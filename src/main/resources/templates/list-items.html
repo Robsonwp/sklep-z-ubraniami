@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>list-employees</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div>
+<h3>Magazyn z ubraniami</h3>
+	<hr>
+	<a th:href="@{/ubrania/addForm}" class="btn btn-primary btn-sm mb-3">Dodaj przedmiot</a>
+	<a th:href="@{/ubrania/download}" class="btn btn-primary btn-sm mb-3">test pobierania</a>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+		<tr>
+			<th>Marka</th>
+			<th>Rodzaj</th>
+			<th>Model</th>
+			<th>Cena</th>
+			<th>Akcje</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="item : ${items}">
+			<td th:text="${item.getMarka()}"></td>
+			<td th:text="${item.getRodzaj()}"></td>
+			<td th:text="${item.getNazwa()}"></td>
+			<td th:text="${item.getCena()}"></td>
+			<td>
+				<a th:href="@{/ubrania/updateForm(itemId=${item.getId()})}" class="btn btn-info btn-sm">Zmień</a>
+				<a th:href="@{/ubrania/delete(itemId=${item.getId()})}"
+				   class="btn btn-danger
+				    btn-sm"
+				onclick="if(!(confirm('Chcesz usunąć ten przedmiot?'))) return false">Usuń</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

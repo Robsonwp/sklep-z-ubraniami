@@ -1,0 +1,68 @@
+{
+  
+"nazwa": "Know Your Rights",
+  
+"rodzaj": "koszulka",
+  
+"cena": 380,
+  
+"marka": "Supreme",
+  
+"p³eæ": "mêska",
+  
+"rozmiar": M,
+  
+"kolor": "Granatowa",
+"iloœæ": 1
+}
+{
+  
+"nazwa": "Keyboard",
+  
+"rodzaj": "koszulka",
+  
+"cena": 380,
+  
+"marka": "Supreme",
+  
+"p³eæ": "unisex",
+  
+"rozmiar": M,
+  
+"kolor": "Czarny",
+"iloœæ": 3
+}
+{
+  
+"nazwa": "Ape",
+  
+"rodzaj": "koszulka",
+  
+"cena": 550,
+  
+"marka": "Bape",
+  
+"p³eæ": "mêska",
+  
+"rozmiar": XXXL,
+  
+"kolor": "Czerwony",
+"iloœæ": 10
+}
+{
+  
+"nazwa": "Collage",
+  
+"rodzaj": "buty",
+  
+"cena": 1200,
+  
+"marka": "Nike",
+  
+"p³eæ": "unisex",
+  
+"rozmiar": 44,
+  
+"kolor": "Czerwony",
+"iloœæ": 2
+}

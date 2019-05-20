@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl-PL" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>list-employees</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+	<style>
+		@page{size: landscape;}
+		@font-face {
+			src: url("static/Roboto-Black.ttf");
+			-fs-pdf-font-embed: embed;
+			-fs-pdf-font-encoding: Identity-H;
+		}
+		*{
+			font-family: Roboto-Black;
+		}
+	</style>
+</head>
+<body>
+<div>
+<h3>Magazyn z ubraniami</h3>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+		<tr>
+			<th>Id</th>
+			<th>Rodzaj</th>
+			<th>Cena</th>
+			<th>Marka</th>
+			<th>Płeć</th>
+			<th>Rozmiar</th>
+			<th>Kolor</th>
+			<th>Ilość</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="item : ${items}">
+			<td th:text="${item.getId()}"></td>
+			<td th:text="${item.getRodzaj()}"></td>
+			<td th:text="${item.getCena()}"></td>
+			<td th:text="${item.getMarka()}"></td>
+			<td th:text="${item.getPlec()}"></td>
+			<td th:text="${item.getRozmiar()}"></td>
+			<td th:text="${item.getColor()}"></td>
+			<td th:text="${item.getIlosc()}"></td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

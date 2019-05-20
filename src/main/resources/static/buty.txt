@@ -1,0 +1,103 @@
+{
+  
+"nazwa": "Jordan One",
+  
+"rodzaj": "buty",
+  
+"cena": 1200,
+  
+"marka": "Nike",
+  
+"p³eæ": "unisex",
+  
+"rozmiar": 44,
+  
+"kolor": "Czerwony",
+"iloœæ": 3
+}
+{
+  
+"nazwa": "Vapormax 2.0",
+  
+"rodzaj": "buty",
+  
+"cena": 900,
+  
+"marka": "Nike",
+  
+"p³eæ": "unisex",
+  
+"rozmiar": 41,
+  
+"kolor": "Czarny",
+"iloœæ": 1
+}
+{
+  
+"nazwa": "Air Max 95",
+  
+"rodzaj": "buty",
+  
+"cena": 720,
+  
+"marka": "Nike",
+  
+"p³eæ": "damskie",
+  
+"rozmiar": 38,
+  
+"kolor": "Bia³y",
+
+"iloœæ": 12
+}
+{
+  
+"nazwa": "Adidas Ultraboost",
+  
+"rodzaj": "buty",
+  
+"cena": 680,
+  
+"marka": "Adidas",
+  
+"p³eæ": "mêskie",
+  
+"rozmiar": 43,
+  
+"kolor": "Czarno-bia³y",
+"iloœæ": 2
+}
+{
+  
+"nazwa": "Jogger Shoes",
+  
+"rodzaj": "buty",
+  
+"cena": 649,
+  
+"marka": "Adidas",
+  
+"p³eæ": "damskie",
+  
+"rozmiar": 41.5,
+  
+"kolor": "Czarno-pomarañczowy",
+"iloœæ": 1
+}
+{
+  
+"nazwa": "Ray Low",
+  
+"rodzaj": "buty",
+  
+"cena": 459,
+  
+"marka": "Fila",
+  
+"p³eæ": "mêskie",
+  
+"rozmiar": 42,
+  
+"kolor": "Bia³y",
+"iloœæ": 20
+}
