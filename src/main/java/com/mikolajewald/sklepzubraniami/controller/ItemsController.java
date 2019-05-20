@@ -77,8 +77,6 @@ public class ItemsController {
         return "redirect:/ubrania/list";
     }
 
-    //    @RequestMapping(value = "/downloadRaportString", method = RequestMethod.GET,
-//    produces = MediaType.APPLICATION_PDF_VALUE)
     @GetMapping("/download")
     public ResponseEntity<Resource> download(HttpServletRequest request) {
 
