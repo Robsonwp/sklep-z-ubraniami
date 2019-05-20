@@ -15,23 +15,31 @@
 <h3>Magazyn z ubraniami</h3>
 	<hr>
 	<a th:href="@{/ubrania/addForm}" class="btn btn-primary btn-sm mb-3">Dodaj przedmiot</a>
-	<a th:href="@{/ubrania/download}" class="btn btn-primary btn-sm mb-3">test pobierania</a>
+	<a th:href="@{/ubrania/download}" class="btn btn-primary btn-sm mb-3">Pobierz raport</a>
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 		<tr>
 			<th>Marka</th>
+			<th>Nazwa</th>
 			<th>Rodzaj</th>
-			<th>Model</th>
+			<th>Płeć</th>
+			<th>rozmiar</th>
+			<th>kolor</th>
 			<th>Cena</th>
+			<th>ilość</th>
 			<th>Akcje</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr th:each="item : ${items}">
 			<td th:text="${item.getMarka()}"></td>
-			<td th:text="${item.getRodzaj()}"></td>
 			<td th:text="${item.getNazwa()}"></td>
+			<td th:text="${item.getRodzaj()}"></td>
+			<td th:text="${item.getPlec()}"></td>
+			<td th:text="${item.getRozmiar()}"></td>
+			<td th:text="${item.getColor()}"></td>
 			<td th:text="${item.getCena()}"></td>
+			<td th:text="${item.getIlosc()}"></td>
 			<td>
 				<a th:href="@{/ubrania/updateForm(itemId=${item.getId()})}" class="btn btn-info btn-sm">Zmień</a>
 				<a th:href="@{/ubrania/delete(itemId=${item.getId()})}"

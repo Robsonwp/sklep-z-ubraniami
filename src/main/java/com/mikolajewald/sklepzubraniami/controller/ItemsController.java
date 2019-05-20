@@ -4,12 +4,19 @@ package com.mikolajewald.sklepzubraniami.controller;
 import com.mikolajewald.sklepzubraniami.entity.Item;
 import com.mikolajewald.sklepzubraniami.raport.PdfGenaratorUtil;
 import com.mikolajewald.sklepzubraniami.service.ItemsService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.nio.file.Path;
 import java.util.List;
 
 @Controller
@@ -73,22 +80,28 @@ public class ItemsController {
     //    @RequestMapping(value = "/downloadRaportString", method = RequestMethod.GET,
 //    produces = MediaType.APPLICATION_PDF_VALUE)
     @GetMapping("/download")
-    public String download() {
+    public ResponseEntity<Resource> download(HttpServletRequest request) {
 
         List<Item> items = itemsService.getItems();
-//
-//        GeneratePdfReport pdfReport = new GeneratePdfReport();
-//        pdfReport.itemsReport(items);
+
+        Resource resource = null;
 
         try {
-            pdfGenaratorUtil.createPdf("pdf-template", items);
+            Path path = pdfGenaratorUtil.createPdf("pdf-template", items);
+            resource = itemsService.loadFileAsResource(path);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=itemsraport.pdf");
 
-        return "redirect:/ubrania/list";
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "Attachment; filename=\"" + resource.getFilename()
+                + "\"")
+                .body(resource);
 
     }
 }
