@@ -16,6 +16,9 @@
 	<hr>
 	<a th:href="@{/ubrania/addForm}" class="btn btn-primary btn-sm mb-3">Dodaj przedmiot</a>
 	<a th:href="@{/ubrania/download}" class="btn btn-primary btn-sm mb-3">Pobierz raport</a>
+	<a th:href="@{/ubrania/filter}" th:if="${!filtered}" class="btn btn-primary btn-sm mb-3">Filtruj wyniki</a>
+	<a th:href="@{/ubrania/list}" th:if="${filtered}" class="btn btn-primary btn-sm mb-3">Wróć do wszystkich wyników</a>
+	<a th:href="@{/ubrania/filter}" th:if="${filtered}" class="btn btn-primary btn-sm mb-3">Filtruj ponownie</a>
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 		<tr>

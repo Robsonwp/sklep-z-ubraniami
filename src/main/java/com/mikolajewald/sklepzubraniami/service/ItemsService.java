@@ -54,4 +54,8 @@ public class ItemsService {
 
 
     }
+
+    public List<Item> findItems(Item item) {
+        return itemDao.findItems(item);
+    }
 }

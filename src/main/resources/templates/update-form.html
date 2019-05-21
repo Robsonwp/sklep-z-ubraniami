@@ -16,8 +16,8 @@
 <div class="container">
 	<h3>Magazyn z ubraniami</h3>
 	<hr>
-	<p class="h4 mb-4">Zapisz ubranie</p>
-	<form action="#" th:action="@{/ubrania/save}"
+	<p class="h4 mb-4" th:text="${filtered} ? 'Znajdź ubranie' : 'Zapisz ubranie'"></p>
+	<form action="#" th:with="url=${filtered ? '/ubrania/find' : '/ubrania/save'}" th:action="@{${url}}"
 	th:object="${item}" method="post">
 		<input type="hidden" th:field="*{id}"/>
 		<input type="text" th:field="*{nazwa}"
@@ -34,9 +34,9 @@
 		       class="form-control mb-4 col-4" placeholder="Rozmiar">
 		<input type="text" th:field="*{color}"
 		       class="form-control mb-4 col-4" placeholder="Kolor">
-		<input type="number" th:field="*{ilosc}"
+		<input th:if="${!filtered}" type="number" th:field="*{ilosc}"
 		       class="form-control mb-4 col-4" placeholder="Ilość">
-		<button type="submit" class="btn btn-info col-2">Zapisz</button>
+		<button type="submit" class="btn btn-info col-2" th:text="${filtered} ? 'Znajdź' : 'Zapisz'"></button>
 	</form>
 	<hr>
 	<a th:href="@{/ubrania/list}">Powrót do strony głównej</a>

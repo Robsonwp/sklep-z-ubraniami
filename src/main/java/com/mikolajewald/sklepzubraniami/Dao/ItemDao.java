@@ -59,6 +59,7 @@ public class ItemDao {
     public void saveItem(Item item) {
         item.setId(items.get(items.size() - 1).getId() + 1);
         items.add(item);
+        System.out.println(item.toString());
     }
 
     public void updateItem(Item item) {
@@ -97,6 +98,36 @@ public class ItemDao {
                 saveData();
             }
         }
+    }
+
+    //TODO znajdz konkretny przedmiot
+
+    public List<Item> findItems(Item i) {
+        loadData();
+        List<Item> tempItems = new ArrayList<>();
+
+        for (int j = 0; j < items.size(); j++) {
+            String nazwa = i.getNazwa();
+            String rodzaj = i.getRodzaj();
+            double cena = i.getCena();
+            String marka = i.getMarka();
+            String plec = i.getPlec();
+            String rozmiar = i.getRozmiar();
+            String color = i.getColor();
+
+            System.out.println("rodzaj: " + rodzaj.equals(items.get(j).getRodzaj()));
+
+            if (((nazwa.isEmpty()) || nazwa.equals(items.get(j).getNazwa())) &&
+                    (rodzaj.isEmpty() || rodzaj.equals(items.get(j).getRodzaj())) &&
+                    (cena == 0 || (cena == items.get(j).getCena())) &&
+                    (marka.isEmpty() || marka.equals(items.get(j).getMarka())) &&
+                    (plec.isEmpty() || plec.equals(items.get(j).getPlec())) &&
+                    (rozmiar.isEmpty() || rozmiar.equals(items.get(j).getRodzaj())) &&
+                    (color.isEmpty() || color.equals(items.get(j).getRodzaj())))
+                tempItems.add(items.get(j));
+        }
+
+        return tempItems;
     }
 
 //    public List<Item> getRodzaj(String rodzaj) {

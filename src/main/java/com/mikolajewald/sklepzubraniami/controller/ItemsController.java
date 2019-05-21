@@ -18,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/ubrania")
+@SessionAttributes("searchItem")
 public class ItemsController {
 
 
@@ -38,6 +39,7 @@ public class ItemsController {
         List<Item> items = itemsService.getItems();
 
         model.addAttribute("items", items);
+        model.addAttribute("filtered", false);
 
         return "list-items";
     }
@@ -48,7 +50,7 @@ public class ItemsController {
         Item item = itemsService.getItem(itemId);
 
         model.addAttribute("item", item);
-
+        model.addAttribute("filtered", false);
         return "update-form";
     }
 
@@ -64,6 +66,8 @@ public class ItemsController {
         Item item = new Item();
 
         model.addAttribute("item", item);
+        model.addAttribute("filtered", false);
+
         return "update-form";
     }
 
@@ -96,5 +100,32 @@ public class ItemsController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "Attachment; filename=\"" + resource.getFilename()
                         + "\"")
                 .body(resource);
+    }
+
+    @GetMapping("/filter")
+    public String filter(@ModelAttribute("searchItem")Item item, Model model) {
+
+        System.out.println("przed checią filtrowania: " + item);
+        if(item==null)
+            item = new Item();
+
+        model.addAttribute("item", item);
+        model.addAttribute("filtered", true);
+        return "update-form";
+    }
+
+    @PostMapping("/find")
+    public String findItems(@ModelAttribute("searchItem") Item item,
+                            Model model) {
+        List<Item> items = itemsService.findItems(item);
+        model.addAttribute("items", items);
+        model.addAttribute("filtered", true);
+        model.addAttribute("item", item);
+        return "list-items";
+    }
+
+    @ModelAttribute("searchItem")
+    public Item searchItem() {
+        return new Item();
     }
 }

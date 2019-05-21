@@ -20,7 +20,7 @@
   "cena" : 380.0
 }, {
   "id" : 3,
-  "nazwa" : "Ape",
+  "nazwa" : "Apea",
   "rodzaj" : "koszulka",
   "marka" : "Bape",
   "plec" : "męska",
@@ -99,13 +99,13 @@
   "ilosc" : 20,
   "cena" : 459.0
 }, {
-  "id" : 11,
-  "nazwa" : "dd",
-  "rodzaj" : "dd",
-  "marka" : "dd",
-  "plec" : "dd",
-  "rozmiar" : "dd",
-  "color" : "dd",
+  "id" : 12,
+  "nazwa" : "Know Your Rights v2",
+  "rodzaj" : "koszulka",
+  "marka" : "Suprememe",
+  "plec" : "unisex",
+  "rozmiar" : "M",
+  "color" : "Granatowa",
   "ilosc" : 12,
-  "cena" : 12.0
+  "cena" : 20.0
 } ]
