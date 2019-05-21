@@ -12,7 +12,7 @@
   "id" : 2,
   "nazwa" : "Keyboard",
   "rodzaj" : "koszulka",
-  "marka" : "Supreme",
+  "marka" : "Suprememe",
   "plec" : "unisex",
   "rozmiar" : "M",
   "color" : "Czarny",
@@ -99,13 +99,13 @@
   "ilosc" : 20,
   "cena" : 459.0
 }, {
-  "id" : 12,
+  "id" : 11,
   "nazwa" : "Know Your Rights v2",
   "rodzaj" : "koszulka",
   "marka" : "Suprememe",
   "plec" : "unisex",
   "rozmiar" : "M",
   "color" : "Granatowa",
-  "ilosc" : 12,
-  "cena" : 20.0
+  "ilosc" : 0,
+  "cena" : 0.0
 } ]

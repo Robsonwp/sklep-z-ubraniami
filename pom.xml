@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mikolajewald</groupId>
 	<artifactId>sklep-z-ubraniami</artifactId>
-	<version>1.0-RELEASE</version>
+	<version>1.1-RELEASE</version>
 	<name>sklep-z-ubraniami</name>
 	<description>Demo project for Spring Boot</description>
 
