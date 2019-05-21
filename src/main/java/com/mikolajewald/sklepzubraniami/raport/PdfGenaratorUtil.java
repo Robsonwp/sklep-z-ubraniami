@@ -3,7 +3,6 @@ package com.mikolajewald.sklepzubraniami.raport;
 import com.itextpdf.text.pdf.BaseFont;
 import com.mikolajewald.sklepzubraniami.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.thymeleaf.TemplateEngine;
@@ -15,13 +14,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.List;
 
 @Component
 public class PdfGenaratorUtil {
+
+    private String fontPath = "./resources/ARIALUNI.TTF";
+    private String raportOutputPath = "./raporty/";
+
+
     @Autowired
     private TemplateEngine templateEngine;
+
     public Path createPdf(String templateName, List<Item> items) throws Exception {
         Assert.notNull(templateName, "The templateName can not be null");
         Context ctx = new Context();
@@ -30,15 +34,13 @@ public class PdfGenaratorUtil {
 
         String processedHtml = templateEngine.process(templateName, ctx);
         FileOutputStream os = null;
-        Date date = new Date();
-        System.out.println(date.toString());
         String fileName = "raport";
         try {
-            final File outputFile = File.createTempFile(fileName, ".pdf", new ClassPathResource("static").getFile());
+            final File outputFile = File.createTempFile(fileName, ".pdf", new File(raportOutputPath));
             os = new FileOutputStream(outputFile);
 
             ITextRenderer renderer = new ITextRenderer();
-            renderer.getFontResolver().addFont("static/ARIALUNI.ttf",
+            renderer.getFontResolver().addFont(fontPath,
                     BaseFont.IDENTITY_H,
                     BaseFont.EMBEDDED);
 
@@ -48,11 +50,10 @@ public class PdfGenaratorUtil {
             renderer.createPDF(os, false);
             renderer.finishPDF();
             System.out.println("PDF created successfully");
-            System.out.println(outputFile.toString() +" " + outputFile.getAbsolutePath());
+            System.out.println(outputFile.toString() + " " + outputFile.getAbsolutePath());
             Path path = Paths.get(outputFile.getAbsolutePath());
             return path;
-        }
-        finally {
+        } finally {
             if (os != null) {
                 try {
                     os.close();

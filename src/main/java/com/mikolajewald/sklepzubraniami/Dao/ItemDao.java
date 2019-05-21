@@ -6,17 +6,10 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.mikolajewald.sklepzubraniami.entity.Item;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,22 +19,20 @@ public class ItemDao {
     private List<Item> items;
     private ObjectMapper mapper;
     private ObjectWriter writer;
+    private String jsonPath = "./resources/przedmioty.json";
 
 
     public void loadData() {
         mapper = new ObjectMapper();
         try {
-            ClassPathResource classPathResource = new ClassPathResource("przedmioty.json");
-
-            InputStream inputStream = classPathResource.getInputStream();
-            File tempFile = File.createTempFile("test", ".json");
-
-                FileUtils.copyInputStreamToFile(inputStream, tempFile);
-
-            System.out.println(tempFile);
-            System.out.println(ItemDao.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString());
-            items = mapper.readValue(tempFile, new TypeReference<List<Item>>() {
+            items = mapper.readValue(new File(jsonPath), new TypeReference<List<Item>>() {
             });
+            File file = new File(jsonPath);
+            if (file.isFile()) {
+                System.out.println("znalazłem plik");
+            } else {
+                System.out.println("nie ma " + file.getAbsolutePath());
+            }
         } catch (IOException e) {
             items = null;
             e.printStackTrace();
@@ -53,11 +44,10 @@ public class ItemDao {
         mapper = new ObjectMapper();
         writer = mapper.writer(new DefaultPrettyPrinter());
         try {
-            writer.writeValue(new ClassPathResource("przedmioty.json").getFile(), items);
+            writer.writeValue(new File(jsonPath), items);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public List<Item> getItems() {
@@ -107,17 +97,16 @@ public class ItemDao {
                 saveData();
             }
         }
-
     }
 
-    public List<Item> getRodzaj(String rodzaj) {
-        List<Item> tempItems = new ArrayList<>();
-        for (Item i :
-                items) {
-            if (i.getRodzaj() == "rodzaj") {
-                tempItems.add(i);
-            }
-        }
-        return tempItems;
-    }
+//    public List<Item> getRodzaj(String rodzaj) {
+//        List<Item> tempItems = new ArrayList<>();
+//        for (Item i :
+//                items) {
+//            if (i.getRodzaj() == "rodzaj") {
+//                tempItems.add(i);
+//            }
+//        }
+//        return tempItems;
+//    }
 }

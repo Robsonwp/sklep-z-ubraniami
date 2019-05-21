@@ -4,10 +4,8 @@ package com.mikolajewald.sklepzubraniami.controller;
 import com.mikolajewald.sklepzubraniami.entity.Item;
 import com.mikolajewald.sklepzubraniami.raport.PdfGenaratorUtil;
 import com.mikolajewald.sklepzubraniami.service.ItemsService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -78,7 +75,7 @@ public class ItemsController {
     }
 
     @GetMapping("/download")
-    public ResponseEntity<Resource> download(HttpServletRequest request) {
+    public ResponseEntity<Resource> download() {
 
         List<Item> items = itemsService.getItems();
 
@@ -87,7 +84,6 @@ public class ItemsController {
         try {
             Path path = pdfGenaratorUtil.createPdf("pdf-template", items);
             resource = itemsService.loadFileAsResource(path);
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,8 +94,7 @@ public class ItemsController {
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "Attachment; filename=\"" + resource.getFilename()
-                + "\"")
+                        + "\"")
                 .body(resource);
-
     }
 }

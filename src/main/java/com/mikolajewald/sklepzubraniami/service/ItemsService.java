@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Scanner;
 
 @Service
 public class ItemsService {
@@ -34,7 +33,6 @@ public class ItemsService {
     public void update(Item item) {
         itemDao.updateItem(item);
     }
-
 
     public void deleteItem(int itemId) {
         itemDao.deleteItem(itemId);

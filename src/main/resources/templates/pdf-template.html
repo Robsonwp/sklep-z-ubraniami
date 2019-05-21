@@ -11,14 +11,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 	<style type="text/css">
 		@page{size: landscape;}
-		/*@font-face {*/
-			/*src: url("static/Roboto-Black.ttf");*/
-			/*-fs-pdf-font-embed: embed;*/
-			/*-fs-pdf-font-encoding: Identity-H;*/
-		/*}*/
-		/**{*/
-			/*font-family: Roboto-Black;*/
-		/*}*/
 		body {
 			font-family: "Arial Unicode MS";
 		}
@@ -34,6 +26,7 @@
 			<th>Rodzaj</th>
 			<th>Cena</th>
 			<th>Marka</th>
+			<th>Nazwa</th>
 			<th>Płeć</th>
 			<th>Rozmiar</th>
 			<th>Kolor</th>
@@ -46,6 +39,7 @@
 			<td th:text="${item.getRodzaj()}"></td>
 			<td th:text="${item.getCena()}"></td>
 			<td th:text="${item.getMarka()}"></td>
+			<td th:text="${item.getNazwa()}"></td>
 			<td th:text="${item.getPlec()}"></td>
 			<td th:text="${item.getRozmiar()}"></td>
 			<td th:text="${item.getColor()}"></td>
