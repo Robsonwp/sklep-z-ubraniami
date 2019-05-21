@@ -21,7 +21,6 @@ import java.util.List;
 @SessionAttributes("searchItem")
 public class ItemsController {
 
-
     private ItemsService itemsService;
 
     @Autowired
@@ -32,7 +31,6 @@ public class ItemsController {
         this.itemsService = itemsService;
     }
 
-
     @GetMapping("/list")
     public String listItems(Model model) {
 
@@ -40,6 +38,7 @@ public class ItemsController {
 
         model.addAttribute("items", items);
         model.addAttribute("filtered", false);
+        model.addAttribute("item", new Item());
 
         return "list-items";
     }
@@ -79,9 +78,9 @@ public class ItemsController {
     }
 
     @GetMapping("/download")
-    public ResponseEntity<Resource> download() {
+    public ResponseEntity<Resource> download(@ModelAttribute("searchItem")Item item, Model model) {
 
-        List<Item> items = itemsService.getItems();
+        List<Item> items = itemsService.findItems(item);
 
         Resource resource = null;
 
@@ -103,10 +102,10 @@ public class ItemsController {
     }
 
     @GetMapping("/filter")
-    public String filter(@ModelAttribute("searchItem")Item item, Model model) {
+    public String filter(@ModelAttribute("searchItem") Item item, Model model) {
 
         System.out.println("przed checią filtrowania: " + item);
-        if(item==null)
+        if (item == null)
             item = new Item();
 
         model.addAttribute("item", item);

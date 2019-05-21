@@ -105,7 +105,7 @@ public class ItemDao {
     public List<Item> findItems(Item i) {
         loadData();
         List<Item> tempItems = new ArrayList<>();
-
+        try {
         for (int j = 0; j < items.size(); j++) {
             String nazwa = i.getNazwa();
             String rodzaj = i.getRodzaj();
@@ -114,9 +114,6 @@ public class ItemDao {
             String plec = i.getPlec();
             String rozmiar = i.getRozmiar();
             String color = i.getColor();
-
-            System.out.println("rodzaj: " + rodzaj.equals(items.get(j).getRodzaj()));
-
             if (((nazwa.isEmpty()) || nazwa.equals(items.get(j).getNazwa())) &&
                     (rodzaj.isEmpty() || rodzaj.equals(items.get(j).getRodzaj())) &&
                     (cena == 0 || (cena == items.get(j).getCena())) &&
@@ -125,6 +122,9 @@ public class ItemDao {
                     (rozmiar.isEmpty() || rozmiar.equals(items.get(j).getRodzaj())) &&
                     (color.isEmpty() || color.equals(items.get(j).getRodzaj())))
                 tempItems.add(items.get(j));
+        } }catch (NullPointerException e) {
+            System.out.println("był null w itemie");
+            return items;
         }
 
         return tempItems;
