@@ -25,7 +25,7 @@
 		       th:field="*{nazwa}" type="text" th:required="${!filtered}">
 		<input class="form-control mb-4 col-4" placeholder="Rodzaj"
 		       th:field="*{rodzaj}" type="text" th:required="${!filtered}">
-		<input class="form-control mb-4 col-4" placeholder="Cena"
+		<input class="form-control mb-4 col-4" min="0" placeholder="Cena"
 		       th:field="*{cena}" type="number" th:required="${!filtered}">
 		<input class="form-control mb-4 col-4" placeholder="Marka"
 		       th:field="*{marka}" type="text" th:required="${!filtered}">
@@ -35,7 +35,7 @@
 		       th:field="*{rozmiar}" type="text" th:required="${!filtered}">
 		<input class="form-control mb-4 col-4" placeholder="Kolor"
 		       th:field="*{color}" type="text" th:required="${!filtered}">
-		<input class="form-control mb-4 col-4" placeholder="Ilość" th:field="*{ilosc}"
+		<input class="form-control mb-4 col-4" min="0" placeholder="Ilość" th:field="*{ilosc}"
 		       th:if="${!filtered}" type="number" th:required="${!filtered}">
 		<button class="btn btn-info col-2" th:text="${filtered} ? 'Znajdź' : 'Zapisz'" type="submit"></button>
 	</form>
