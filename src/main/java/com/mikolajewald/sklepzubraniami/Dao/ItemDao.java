@@ -25,14 +25,14 @@ public class ItemDao {
     public void loadData() {
         mapper = new ObjectMapper();
         try {
-            items = mapper.readValue(new File(jsonPath), new TypeReference<List<Item>>() {
-            });
             File file = new File(jsonPath);
-            if (file.isFile()) {
-                System.out.println("znalazłem plik");
-            } else {
-                System.out.println("nie ma " + file.getAbsolutePath());
+            if (!file.isFile()) {
+                System.out.println("nie ma pliku: " + file.getAbsolutePath());
+                System.out.println("Tworze plik bazy danych json na scieżce: " + file.getAbsolutePath());
+                file.createNewFile();
             }
+            items = mapper.readValue(file, new TypeReference<List<Item>>() {
+            });
         } catch (IOException e) {
             items = null;
             e.printStackTrace();
@@ -130,14 +130,4 @@ public class ItemDao {
         return tempItems;
     }
 
-//    public List<Item> getRodzaj(String rodzaj) {
-//        List<Item> tempItems = new ArrayList<>();
-//        for (Item i :
-//                items) {
-//            if (i.getRodzaj() == "rodzaj") {
-//                tempItems.add(i);
-//            }
-//        }
-//        return tempItems;
-//    }
 }
