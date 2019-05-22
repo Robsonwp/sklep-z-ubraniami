@@ -20,7 +20,7 @@ import java.util.List;
 public class PdfGenaratorUtil {
 
     private String fontPath = "./resources/ARIALUNI.TTF";
-    private String raportOutputPath = "./raporty/";
+    public String raportOutputPath = "./raporty/";
 
 
     @Autowired

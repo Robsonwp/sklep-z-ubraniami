@@ -119,8 +119,8 @@ public class ItemDao {
                     (cena == 0 || (cena == items.get(j).getCena())) &&
                     (marka.isEmpty() || marka.equals(items.get(j).getMarka())) &&
                     (plec.isEmpty() || plec.equals(items.get(j).getPlec())) &&
-                    (rozmiar.isEmpty() || rozmiar.equals(items.get(j).getRodzaj())) &&
-                    (color.isEmpty() || color.equals(items.get(j).getRodzaj())))
+                    (rozmiar.isEmpty() || rozmiar.equals(items.get(j).getRozmiar())) &&
+                    (color.isEmpty() || color.equals(items.get(j).getColor())))
                 tempItems.add(items.get(j));
         } }catch (NullPointerException e) {
             System.out.println("był null w itemie");

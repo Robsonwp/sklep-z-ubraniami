@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mikolajewald</groupId>
 	<artifactId>sklep-z-ubraniami</artifactId>
-	<version>1.1-RELEASE</version>
+	<version>1.1.2-RELEASE</version>
 	<name>sklep-z-ubraniami</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -55,6 +55,11 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
 	</dependencies>
