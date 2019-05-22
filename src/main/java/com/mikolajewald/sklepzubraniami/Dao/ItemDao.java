@@ -16,13 +16,11 @@ import java.util.List;
 @Component
 public class ItemDao {
 
+    private final String jsonPath = "./resources/przedmioty.json";
     private List<Item> items;
     private ObjectMapper mapper;
-    private ObjectWriter writer;
-    private String jsonPath = "./resources/przedmioty.json";
 
-
-    public void loadData() {
+    private void loadData() {
         mapper = new ObjectMapper();
         try {
             File file = new File(jsonPath);
@@ -39,10 +37,10 @@ public class ItemDao {
         }
     }
 
-    public void saveData() {
+    private void saveData() {
 
         mapper = new ObjectMapper();
-        writer = mapper.writer(new DefaultPrettyPrinter());
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         try {
             writer.writeValue(new File(jsonPath), items);
         } catch (IOException e) {
@@ -56,7 +54,7 @@ public class ItemDao {
     }
 
 
-    public void saveItem(Item item) {
+    private void saveItem(Item item) {
         item.setId(items.get(items.size() - 1).getId() + 1);
         items.add(item);
         System.out.println(item.toString());
@@ -95,34 +93,34 @@ public class ItemDao {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId() == id) {
                 items.remove(i);
-                saveData();
+                break;
             }
         }
+        saveData();
     }
-
-    //TODO znajdz konkretny przedmiot
 
     public List<Item> findItems(Item i) {
         loadData();
         List<Item> tempItems = new ArrayList<>();
         try {
-        for (int j = 0; j < items.size(); j++) {
-            String nazwa = i.getNazwa();
-            String rodzaj = i.getRodzaj();
-            double cena = i.getCena();
-            String marka = i.getMarka();
-            String plec = i.getPlec();
-            String rozmiar = i.getRozmiar();
-            String color = i.getColor();
-            if (((nazwa.isEmpty()) || nazwa.equals(items.get(j).getNazwa())) &&
-                    (rodzaj.isEmpty() || rodzaj.equals(items.get(j).getRodzaj())) &&
-                    (cena == 0 || (cena == items.get(j).getCena())) &&
-                    (marka.isEmpty() || marka.equals(items.get(j).getMarka())) &&
-                    (plec.isEmpty() || plec.equals(items.get(j).getPlec())) &&
-                    (rozmiar.isEmpty() || rozmiar.equals(items.get(j).getRozmiar())) &&
-                    (color.isEmpty() || color.equals(items.get(j).getColor())))
-                tempItems.add(items.get(j));
-        } }catch (NullPointerException e) {
+            for (int j = 0; j < items.size(); j++) {
+                String nazwa = i.getNazwa();
+                String rodzaj = i.getRodzaj();
+                double cena = i.getCena();
+                String marka = i.getMarka();
+                String plec = i.getPlec();
+                String rozmiar = i.getRozmiar();
+                String color = i.getColor();
+                if (((nazwa.isEmpty()) || nazwa.equals(items.get(j).getNazwa())) &&
+                        (rodzaj.isEmpty() || rodzaj.equals(items.get(j).getRodzaj())) &&
+                        (cena == 0 || (cena == items.get(j).getCena())) &&
+                        (marka.isEmpty() || marka.equals(items.get(j).getMarka())) &&
+                        (plec.isEmpty() || plec.equals(items.get(j).getPlec())) &&
+                        (rozmiar.isEmpty() || rozmiar.equals(items.get(j).getRozmiar())) &&
+                        (color.isEmpty() || color.equals(items.get(j).getColor())))
+                    tempItems.add(items.get(j));
+            }
+        } catch (NullPointerException e) {
             System.out.println("był null w itemie");
             return items;
         }

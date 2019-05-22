@@ -3,8 +3,6 @@ package com.mikolajewald.sklepzubraniami.aspect;
 
 import com.mikolajewald.sklepzubraniami.raport.PdfGenaratorUtil;
 import org.apache.commons.io.FileUtils;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;

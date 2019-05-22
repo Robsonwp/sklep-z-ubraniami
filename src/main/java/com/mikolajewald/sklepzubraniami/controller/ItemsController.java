@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
@@ -85,7 +86,11 @@ public class ItemsController {
         Resource resource = null;
 
         try {
-            Path path = pdfGenaratorUtil.createPdf("pdf-template", items);
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start();
+            Path path = pdfGenaratorUtil.upgradedCreatePdf("pdf-template", items);
+            stopWatch.stop();
+            System.out.println(stopWatch.prettyPrint());
             resource = itemsService.loadFileAsResource(path);
 
         } catch (Exception e) {

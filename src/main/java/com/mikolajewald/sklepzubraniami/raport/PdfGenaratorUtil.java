@@ -1,13 +1,15 @@
 package com.mikolajewald.sklepzubraniami.raport;
 
-import com.itextpdf.text.pdf.BaseFont;
 import com.mikolajewald.sklepzubraniami.entity.Item;
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import org.jsoup.Jsoup;
+import org.jsoup.helper.W3CDom;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,18 +21,25 @@ import java.util.List;
 @Component
 public class PdfGenaratorUtil {
 
-    private String fontPath = "./resources/ARIALUNI.TTF";
     public String raportOutputPath = "./raporty/";
+    private String fontPath = "./resources/ARIALUNI.TTF";
 
 
-    @Autowired
     private TemplateEngine templateEngine;
 
-    public Path createPdf(String templateName, List<Item> items) throws Exception {
+    @Autowired
+    public PdfGenaratorUtil(TemplateEngine templateEngine) {
+        this.templateEngine = templateEngine;
+    }
+
+    public PdfGenaratorUtil() {
+
+    }
+
+    public Path upgradedCreatePdf(String templateName, List<Item> items) throws Exception {
         Assert.notNull(templateName, "The templateName can not be null");
         Context ctx = new Context();
         ctx.setVariable("items", items);
-
 
         String processedHtml = templateEngine.process(templateName, ctx);
         FileOutputStream os = null;
@@ -39,20 +48,14 @@ public class PdfGenaratorUtil {
             final File outputFile = File.createTempFile(fileName, ".pdf", new File(raportOutputPath));
             os = new FileOutputStream(outputFile);
 
-            ITextRenderer renderer = new ITextRenderer();
-            renderer.getFontResolver().addFont(fontPath,
-                    BaseFont.IDENTITY_H,
-                    BaseFont.EMBEDDED);
+            PdfRendererBuilder builder = new PdfRendererBuilder();
+            Document doc = Jsoup.parse(processedHtml);
+            builder.withW3cDocument(new W3CDom().fromJsoup(doc), outputFile.getAbsolutePath())
+                    .useFont(new File(fontPath), "Arial Unicode MS")
+                    .toStream(os)
+                    .run();
 
-            renderer.setDocumentFromString(processedHtml);
-
-            renderer.layout();
-            renderer.createPDF(os, false);
-            renderer.finishPDF();
-            System.out.println("PDF created successfully");
-            System.out.println(outputFile.toString() + " " + outputFile.getAbsolutePath());
-            Path path = Paths.get(outputFile.getAbsolutePath());
-            return path;
+            return Paths.get(outputFile.getAbsolutePath());
         } finally {
             if (os != null) {
                 try {

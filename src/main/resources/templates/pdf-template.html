@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="pl-PL" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8"/>
-	<title>Ubrania</title>
-	<!-- Required meta tags -->
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+	<meta charset="UTF-8">
+	<title>Raport ubrania</title>
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 	<style type="text/css">
-		@page{size: landscape;}
+		@page {
+			size: landscape;
+		}
+
 		body {
 			font-family: "Arial Unicode MS";
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			padding: 10px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			margin: 0;
+		}
+
+		td {
+
+			text-align: center;
+
+		}
+
+		tbody > tr:first-child > td {
+			border-top: none;
+		}
+
+		thead {
+			background-color: #212529;
+			color: white;
+		}
+
+		tbody > tr:nth-child(even) {
+			background-color: #f5f5f5;
+		}
+
+		h2 {
+			text-align: center;
+			padding: 15px;
 		}
 	</style>
 </head>
 <body>
 <div>
-<h3>Magazyn z ubraniami</h3>
-	<table class="table table-bordered table-striped">
-		<thead class="thead-dark">
+	<h2>Magazyn z ubraniami</h2>
+	<table>
+		<thead>
 		<tr>
 			<th>Id</th>
 			<th>Rodzaj</th>
